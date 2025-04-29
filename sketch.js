@@ -1,5 +1,5 @@
-let columns = 10;
-let rows = 10;
+let columns = 40;
+let rows = 40;
 
 //
 
@@ -11,12 +11,18 @@ function preload() {
 
 //
 
+let cam;
+
 function setup() {
   createCanvas(windowWidth, windowHeight, "webgl");
   angleMode(DEGREES);
 
   textFont(font);
-  textSize(height / 10);
+  textSize(height / rows);
+
+  cam = createCamera();
+  cam.setPosition(-50, -4, 10);
+  cam.lookAt(0, -200, 0);
 }
 
 //
@@ -40,7 +46,7 @@ function draw() {
       const m = map(a, -1, 1, 0, textSize());
       push();
       translate(m, textSize() * (j - rows / 2), 0);
-      text("Ciao", 0, 0);
+      text("°°°°°", 0, 0);
       pop();
     }
     pop();
@@ -49,4 +55,5 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  textSize(height / rows);
 }
